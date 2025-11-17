@@ -1,0 +1,7 @@
+# Cahier des charges
+
+On tire 3 dès 3 fois:
+
+Si un dès contient un des chiffres du nombre 421, on le garde et on retire les autres dès.
+
+Si le joueur obtient 421, la partie est terminée, si le joueur dépasse le nombre d'essais max, il a perdu
