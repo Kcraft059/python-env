@@ -7,7 +7,7 @@ from random import randint
  
 ## Defaults
 maxPlay = 3 
-diceCount = 5
+diceCount = 3
 diceSize = 120 # Arbitrary dice render values (which actually look good)
 diceSpace = 80
 dicePointSize = diceSize / 10
