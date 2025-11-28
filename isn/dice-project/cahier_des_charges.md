@@ -1,5 +1,7 @@
 # Cahier des charges
 
+> Camille THEREY
+
 ## Principe du jeu
 
 Le joueur lance 3 dès (aléatoires).

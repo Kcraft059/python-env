@@ -1,5 +1,6 @@
 ##
-# 421 Dice project (might be a bit over-engineered)
+# 421 Dice project
+# Camille THEREY
 ##
 
 import turtle as trtl # Import turtle graphics
