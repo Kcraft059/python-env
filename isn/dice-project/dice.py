@@ -79,7 +79,7 @@ for playIter in range(0,maxPlay) : # Allow maxPlay number of tries
 
   if (validDice1 != -1 and validDice2 != -1 and validDice4 != -1): # If all values have been found, win and stop game
     win = True
-    tries = playIter
+    tries = playIter + 1
     break 
 
 if win : 
