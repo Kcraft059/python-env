@@ -22,10 +22,10 @@ trtl.speed("fastest"); trtl.ht(); trtl.up()
 ## Start main loop 
 win = False
 tries = 0
-validDice1 = validDice2 = validDice4 = -1 # Store when a dice is valid (an array would be a better fit)
+validDice1 = validDice2 = validDice4 = -1 # Store when a dice is valid
 
 for playIter in range(0,maxPlay) : # Allow maxPlay number of tries
-  input(f'Tour {playIter+1}/{maxPlay}, appuyez sur "entrer" pour {"re" if playIter != 0 else ""}lancer les dés !') # Wait before new try (turtle has a builtin keypress listener tho it uses functions)
+  input(f'Tour {playIter+1}/{maxPlay}, appuyez sur "entrer" pour {"re" if playIter != 0 else ""}lancer les dés !') # Wait before new try
 
   trtl.clear() # Clear board
 

@@ -2,13 +2,13 @@ def square(val):
   """Raise a number to it's square"""
   return val**2
 
-def perimeter(x,y):
+def perimeter(w,l):
   """Calculates the perimeter of a rectangle"""
-  return (x+y)*2
+  return (w+l)*2
 
 def averageMark(a,b,c):
   """Calculates the average of 2 marks"""
-  return (a+b+c)/3*20
+  return round((a+b+c)/3,1)
 
 def calc(a,b,operand):
   """Calculates result of a calculation"""
@@ -24,6 +24,13 @@ def calc(a,b,operand):
 def myLen(chain):
   """Return len of chain"""
   return len(chain)
+
+  """ # Ou alors :
+  length = 0
+  for i in chain :
+    length += 1
+  return length
+  """
 
 def spaceCount(chain):
   """Return spaces count in string"""
