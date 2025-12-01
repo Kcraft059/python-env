@@ -44,6 +44,33 @@ def voyelleCount(chain):
   """Return voyelle count in string"""
   voyelles = 0
   for i in chain:
-    if (i == 'a' or i == 'e' or i == 'i' or i == 'o' or i == 'u') :
+    if (i == 'a' or i == 'e' or i == 'i' or i == 'o' or i == 'u' or i == 'y') :
       voyelles += 1
   return voyelles
+
+def consonneCount(chain):
+  """Return voyelle count in string"""
+  consonne = 0
+  for i in chain:
+    if not(i == 'a' or i == 'e' or i == 'i' or i == 'o' or i == 'u' or i == 'y') :
+      consonne += 1
+  return consonne
+
+def isEven(num):
+  return True if num % 2 == 0 else False
+
+def bmiCalc(mass,heigth):
+  return round(mass / heigth**2,1)
+
+""" QCM
+1)
+D. ((randint(0,4)-2)*2)
+2)
+D. (2019,2019)
+3)
+A. -2
+4)
+B. Un entier
+5)
+D. 3
+"""
