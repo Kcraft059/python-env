@@ -48,6 +48,7 @@
         let
           venv-packages = pkgs.lib.concatStringsSep "\n" [
             #"matplotlib==3.10.7"
+            "pillow==12.0.0"
           ];
 
           python3env = pkgs.python3.withPackages (
