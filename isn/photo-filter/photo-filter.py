@@ -1,59 +1,5 @@
 import PIL.Image as pimg
-
-## Definition des entrées du manuel
-helpLib = { 
-"all" : """=== Manuel ===
-Liste des commandes :
-  help : Affiche ce menu
-  exit : sort du programme
-  load <img> : Charge une image
-  show : Affiche l'image actuelle
-  filter <filter_name> <optionnal_options>: Applique un filtre sur l'image actuelle
-  save <img_name> : Sauvegarde l'image actuelle sous le nom <img_name>
-  clear : Efface l'image actuelle
-
-Exemple :
-  `load ./mon-image.jpg` : Charge l'image "./mon-image.jpg"
-  `filter exposure 100` : Applique le filtre "exposure" sur l'image actuelle avec 100 d'intensité
-  `save ./ma-nouvelle-image.jpg`: enregistre l'image actuelle sous le nom ./ma-nouvelle-image.jpg""", 
-
-"filters" : """=== Liste des filtres ===
-  exposure <intensity> : Applique un filtre qui modifie l'exposition de l'image
-  tint <color> <?method> : Colore l'image en une nuance d'une seule couleur
-  grayscale : Convertis l'image en echelle de gris
-
-Pour avoir une documentation plus précise par rapport à l'un des filtres: 
-`help filter_<filter_name>` """,
-
-"filter_exposure" : """=== Filtre d'exposition ===
-Permet de modifer l'exposition d'une image avec une intensité donnée.
-
-  exposure <intensity>
-
-Exemple :
-  `filter exposure 100` : Ajoute 100 de luminosité à l'image
-  `filter exposure -50` : Enelève 50 de luminosité à l'image""",
-
-"filter_tint" : """=== Filtre de tinte ===
-Permet de tinter une image avec une autre couleur.
-<color> : couleur sous la forme hex (#ffffff) ou rgb (255,255,255)
-<method> : methode utilisée (tint/monotone) 
-
-  tint <color> <?method>
-
-Exemple :
-  `filter tint #0080ff` : Tinte l'image en bleu
-  `filter tint #0080ff tint` : meme chose (tint est la methode par defaut)
-  `filter tint 128,128,0 monotone` : Tinte l'image en une seule couleur #808000 (jaune pale)""",
-
-"grayscale" : """=== Filtre d'échelle de gris ===
-Permet de tinter une image en échelle de gris
-
-  grayscale
-
-Exemple :
-  `filter grayscale` : Applique un effet d'échelle de gris sur une image
-"""}
+from helplib import helpLib 
 
 currentImg = None
 
@@ -115,23 +61,24 @@ def fileSave(args) :
   print(f'Image enregistrée en tant que "{args[0]}".')
 
 def printCredit(args) :
-  print("Projet filtre NSI par Camille Therey")
+  print("""=== Projet filtre NSI === 
+- Camille Therey""")
 
 def pickColor(args) :
   global currentImg
   argc = len(args)
   if argc < 1 or args[0] == "":
-    print("Pas assez d'arguments (`pick <positio>` voir `help`).")
+    print("Pas assez d'arguments (`pick <position>` voir `help`).")
     return
   if currentImg == None: 
     print("Aucune image chargée.")
     return
 
   pos = tuple(int(i) for i in args[0].split(",")[:2])
-  values = currentImg.getpixel(pos)
+  values = currentImg.getpixel(pos)[:3]
 
   hexvalue = "#"
-  for value in values[:3]:
+  for value in values:
     hexvalue += str(hex(value))[2:]
 
   print(f'Value of pixel {pos} is {values} or {hexvalue}.')
@@ -161,8 +108,8 @@ def filterApply(args) :
     currentImg = imagePixel(currentImg,int(args[1]))
   elif currentFilter == "swap" and argc == 2 :
     currentImg = imageSwap(currentImg,args[1])
-  elif currentFilter == "replace" and argc == 3 :
-    currentImg = imageColorReplace(currentImg,args[1],int(args[2]))
+  elif currentFilter == "replace" and argc >= 2 :
+    currentImg = imageColorReplace(currentImg,args[1],int(args[2]) if argc > 2 else None)
 
   else :
     print(f'Filtre inconnu \"{currentFilter}\" ou avec trop peu d\'arguments.')
@@ -323,6 +270,8 @@ def imageColorReplace(img,colors,proximity) :
   if img == None: 
     print("Aucune image chargée.")
     return img
+  if proximity == None:
+    proximity = 0
 
   proximity = proximity*255/100
 
@@ -369,7 +318,7 @@ commandList = { "help" : printHelp,
 "credit" : printCredit}
 
 ## REPL (Read eval print loop) -> pour afficher la console du programme
-print("[Tip] Entrez \"help\" pour voir la liste des filtres disponibles.")
+print("[Tip] Tappez `help` pour voir la liste des commandes disponibles disponibles.")
 
 while True:
   cmdline = input("> ");
